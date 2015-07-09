@@ -3,10 +3,11 @@
 // Declare app level module which depends on views, and components
 angular.module('hereComesTheSun', [
   'ngRoute',
-  'hereComesTheSun.view1',
+  'hereComesTheSun.sunrise',
   'hereComesTheSun.view2',
-  'hereComesTheSun.version'
+  'hereComesTheSun.version',
+  'angularMoment'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider.otherwise({redirectTo: '/sunrise'});
 }]);
