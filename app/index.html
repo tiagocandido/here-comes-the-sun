@@ -6,19 +6,107 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
+  <title>Here comes the sun</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <style>
+    .info{
+      font-size: 19px;
+      font-weight: lighter;
+      border: solid;
+      padding: 10px;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    #sunrise{
+      width: 100%;
+    }
+
+    #sunset{
+      width: 50%;
+    }
+    .sun-photo {
+      min-height: 100%;
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-position: center center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+    }
+
+    .sun-photo div {
+      color: white;
+      position: fixed;
+    }
+
+    #sunrise div{
+      left: 0;
+      z-index: 1;
+      margin: 25px;
+    }
+    #sunset div{
+      right: 0;
+      margin: 25px;
+    }
+
+    input[type=range]{
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      position: absolute;
+      background-color: rgba(255,255,255,0.1);
+      width: 100%;
+      bottom: 10px
+    }
+    input[type=range]:focus {
+      outline: none;
+    }
+    input[type=range]:active {
+      outline: none;
+    }
+
+    input[type=range]::-moz-range-track {
+      -moz-appearance:none;
+      height:15px;
+      width: 98%;
+      background-color: rgba(255,255,255,0.1);
+      position: relative;
+      outline: none;
+    }
+    input[type=range]::active {
+      border: none;
+      outline: none;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance:none;
+      width: 150px; height: 30px;
+      background: #fff;
+      border-radius: 0;
+    }
+    input[type=range]::-moz-range-thumb {
+      -moz-appearance: none;
+      width: 20px;
+      height: 15px;
+      background: #fff;
+      border-radius: 0;
+    }
+    input[type=range]:focus::-webkit-slider-thumb {
+      background: rgba(255,255,255,0.5);
+    }
+    input[type=range]:focus::-moz-range-thumb {
+      background: rgba(255,255,255,0.5);
+    }
+  </style>
+
+
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#/sunrise">Sunrise</a></li>
-    <li><a href="#/sunset">Sunset</a></li>
-  </ul>
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>

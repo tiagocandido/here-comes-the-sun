@@ -4,7 +4,6 @@
 angular.module('hereComesTheSun', [
   'ngRoute',
   'hereComesTheSun.sunrise',
-  'hereComesTheSun.sunset',
   'angularMoment'
 ]).
 config(['$routeProvider', function($routeProvider) {

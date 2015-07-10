@@ -1,2 +1,15 @@
-<h1>Último Nascer-do-Sol: {{lastSunRise.city}}</h1>
-<img src="{{lastSunRise.photo}}"/>
+
+<div class='sun-photo' style="background-image: url('{{lastSunRise.photo}}');" id='sunrise'>
+    <div class='box'>
+        <div class="info">Último nascer-do-sol : {{lastSunRise.city}} - {{lastSunRise.timestamp | amDateFormat:'HH:mm'}}</div>
+    </div>
+</div>
+<div class='sun-photo' style="background-image: url('{{lastSunSet.photo}}');" id='sunset'>
+    <div class='box'>
+        <div class="info">Último pôr-do-sol : {{lastSunSet.city}} - {{lastSunSet.timestamp | amDateFormat:'HH:mm'}}</div>
+    </div>
+</div>
+
+<input type="range" min="0" max="100" value="50" id="slider" oninput="document.getElementById('sunset').style.width = this.value + '%'">
+
+;
