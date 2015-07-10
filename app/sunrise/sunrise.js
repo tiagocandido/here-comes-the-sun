@@ -14,9 +14,9 @@ angular.module('hereComesTheSun.sunrise', ['ngRoute'])
             apiEndPoint = 'http://sensor-api.localdata.com/api/v1/aggregations?from=' + from + '&before='+ before +'&fields=light&resolution=5m&over.city=';
 
         $scope.cities = ["San Francisco", "Bangalore", "Boston", "Geneva", "Rio de Janeiro", "Shanghai", "Singapore"];
-        $scope.lastSunRise = null;
-        $scope.lastSunSet = null;
         var getSun = function(){
+            $scope.lastSunRise = null;
+            $scope.lastSunSet = null;
             angular.forEach($scope.cities, function(city, cities_index){
                 var requestUrl = apiEndPoint + encodeURI(city), keepGoing = true;
                 $http.get(requestUrl).success(function(response){
@@ -54,15 +54,29 @@ angular.module('hereComesTheSun.sunrise', ['ngRoute'])
         };
 
         var getPhoto = function(entry, keyword){
-            var city = entry.city,
+            var city = entry.city.split(' ').join('+'),
                 query = encodeURI(keyword + '+' + city),
                 queryUrl = 'http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q='+ encodeURI(query) + '&imgtype=photo&imgsz=xxlarge&callback=JSON_CALLBACK';
-            $http.jsonp(queryUrl).success(function(response){
-                entry.photo = response.responseData.results[0].url;
-            });
+            if(!angular.isDefined(entry.photos)){
+                entry.photos = [];
+                $http.jsonp(queryUrl).success(function(response){
+                    angular.forEach(response.responseData.results, function(photo){
+                        entry.photos.push(photo.url);
+                    });
+                    entry.photo = entry.photos[Math.floor(Math.random() * 4)];
+                })
+            }
+            else{
+                entry.photo = entry.photos[Math.floor(Math.random() * 4)];
+            }
+
         };
 
         getSun();
         $interval(getSun, 1000*60*5);
-    }]);
+        $interval(function(){
+            getPhoto($scope.lastSunRise, 'sunrise');
+            getPhoto($scope.lastSunSet, 'sunset');
+        }, 1000*30);
 
+    }]);
